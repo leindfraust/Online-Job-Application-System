@@ -13,7 +13,8 @@ else{
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
-  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  $magicQuotes = ini_get('magic_quotes_gpc');
+  $theValue = $magicQuotes ? stripslashes($theValue) : $theValue;
 
 //  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
@@ -141,7 +142,14 @@ include "menu.php"
                           <?php
 do {  
 ?>
-                          <option value="<?php echo $row_Recordset1['JobId']?>"><?php echo $row_Recordset1['JobTitle']?></option>
+                          <?php  
+          if ($row_Recordset1 !== null) {
+            echo '<option value="' . $row_Recordset1['JobId'] . '">' . $row_Recordset1['JobTitle'] . '</option>';
+          } else {
+            echo '<option value="">No applicants are available.</option>';
+          }
+          ?>
+
                           <?php
 } while ($row_Recordset1 = mysqli_fetch_assoc($Recordset1));
   $rows = mysqli_num_rows($Recordset1);

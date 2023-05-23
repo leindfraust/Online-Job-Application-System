@@ -12,7 +12,7 @@ if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
 {
   $magicQuotes = ini_get('magic_quotes_gpc');
-$theValue = $magicQuotes ? stripslashes($theValue) : $theValue;
+  $theValue = $magicQuotes ? stripslashes($theValue) : $theValue;
 
 
 //  $theValue = function_exists("mysql_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
