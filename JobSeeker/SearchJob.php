@@ -11,7 +11,9 @@ if(isset($_SESSION['$UserName_job'])){
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
 {
-  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  $magicQuotes = ini_get('magic_quotes_gpc');
+$theValue = $magicQuotes ? stripslashes($theValue) : $theValue;
+
 
 //  $theValue = function_exists("mysql_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 //
